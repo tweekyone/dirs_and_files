@@ -3,4 +3,8 @@ spring :
     url : jdbc:postgresql://localhost:5432/dirs
     username : postgres
     password : postgres
+  flyway:
+    baselineOnMigrate: true
+
 driver-class-name : org.postgresql.Driver
+

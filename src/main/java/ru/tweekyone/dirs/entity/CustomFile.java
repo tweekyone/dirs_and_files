@@ -18,6 +18,9 @@ public class CustomFile {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_id_seq")
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "is_file")
     private Boolean isFile;
 

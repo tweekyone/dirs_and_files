@@ -9,6 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class FileDTO {
 
+    private String name;
+
     private Boolean isFile;
 
     private Long size;

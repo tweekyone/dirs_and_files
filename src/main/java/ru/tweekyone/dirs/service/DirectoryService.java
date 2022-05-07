@@ -37,8 +37,9 @@ public class DirectoryService {
         try (Stream<Path> stream = Files.walk(Path.of(path), 1)) {
             Directory directory = Directory.builder().dateTime(LocalDateTime.now()).path(path).build();
             List<CustomFile> files = stream
-                    .map(p -> new File(path))
-                    .map(f -> CustomFile.builder().isFile(f.isFile()).size(f.length()).directory(directory).build())
+                    .map(p -> new File(p.toString()))
+                    .skip(1l)
+                    .map(f -> CustomFile.builder().name(f.getName()).isFile(f.isFile()).size(f.length()).directory(directory).build())
                     .collect(Collectors.toList());
 
             List<CustomFile> savedFiles = customFileRepo.saveAll(files);
@@ -59,7 +60,11 @@ public class DirectoryService {
     private List<FileDTO> getFileDTOList (List<CustomFile> savedFiles) {
         List<FileDTO> fileDTOList = null;
         for (CustomFile customFile : savedFiles) {
-            fileDTOList.add(new FileDTO(customFile.getIsFile(), customFile.getSize()));
+            fileDTOList.add(new FileDTO(
+                    customFile.getName(),
+                    customFile.getIsFile(),
+                    customFile.getSize())
+            );
         }
         return fileDTOList;
     }
