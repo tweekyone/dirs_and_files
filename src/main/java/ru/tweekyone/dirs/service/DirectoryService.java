@@ -3,6 +3,7 @@ package ru.tweekyone.dirs.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.tweekyone.dirs.dto.DirectoryDTO;
+import ru.tweekyone.dirs.dto.FileDTO;
 import ru.tweekyone.dirs.entity.CustomFile;
 import ru.tweekyone.dirs.entity.Directory;
 import ru.tweekyone.dirs.exceptions.NoSuchDirectoryException;
@@ -28,24 +29,45 @@ public class DirectoryService {
     private final CustomFileRepo customFileRepo;
 
     public DirectoryDTO createDirectory(String path) {
-        Directory directory;
-        List<CustomFile> files;
+        if (!Files.isDirectory(Path.of(path))) {
+            throw new NoSuchDirectoryException(path);
+        }
+
+        DirectoryDTO directoryDTO = null;
         try (Stream<Path> stream = Files.walk(Path.of(path), 1)) {
-            if (Files.isDirectory(Path.of(path))) {
-                directory = Directory.builder().dateTime(LocalDateTime.now()).path(path).build();
-                files = stream
-                        .map(p -> new File(path))
-                        .map(f -> CustomFile.builder().isFile(f.isFile()).size(f.length()).directory(directory).build())
-                        .collect(Collectors.toList());
-            } else {
-                throw new NoSuchDirectoryException(path);
-            }
+            Directory directory = Directory.builder().dateTime(LocalDateTime.now()).path(path).build();
+            List<CustomFile> files = stream
+                    .map(p -> new File(path))
+                    .map(f -> CustomFile.builder().isFile(f.isFile()).size(f.length()).directory(directory).build())
+                    .collect(Collectors.toList());
+
+            List<CustomFile> savedFiles = customFileRepo.saveAll(files);
+            List<FileDTO> fileDTOList = getFileDTOList(savedFiles);
+
+            Directory savedDirectory = directoryRepo.save(directory);
+            directoryDTO = getDirectoryDTO(savedDirectory, fileDTOList);
+
         } catch (IOException ex) {
 
         } catch (InvalidPathException ex) {
 
         }
-        directoryRepo.save(directory);
-        List<CustomFile> savedFiles = customFileRepo.saveAll(files);
+
+        return directoryDTO;
+    }
+
+    private List<FileDTO> getFileDTOList (List<CustomFile> savedFiles) {
+        List<FileDTO> fileDTOList = null;
+        for (CustomFile customFile : savedFiles) {
+            fileDTOList.add(new FileDTO(customFile.getIsFile(), customFile.getSize()));
+        }
+        return fileDTOList;
+    }
+
+    private DirectoryDTO getDirectoryDTO(Directory savedDirectory, List<FileDTO> fileDTOList) {
+        return new DirectoryDTO(
+                savedDirectory.getDateTime(),
+                savedDirectory.getPath(),
+                fileDTOList);
     }
 }
