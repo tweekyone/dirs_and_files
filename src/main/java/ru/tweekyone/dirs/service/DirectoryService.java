@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -42,10 +43,10 @@ public class DirectoryService {
                     .map(f -> CustomFile.builder().name(f.getName()).isFile(f.isFile()).size(f.length()).directory(directory).build())
                     .collect(Collectors.toList());
 
-            List<CustomFile> savedFiles = customFileRepo.saveAll(files);
-            List<FileDTO> fileDTOList = getFileDTOList(savedFiles);
-
             Directory savedDirectory = directoryRepo.save(directory);
+            List<CustomFile> savedFiles = customFileRepo.saveAll(files);
+
+            List<FileDTO> fileDTOList = getFileDTOList(savedFiles);
             directoryDTO = getDirectoryDTO(savedDirectory, fileDTOList);
 
         } catch (IOException ex) {
@@ -58,7 +59,7 @@ public class DirectoryService {
     }
 
     private List<FileDTO> getFileDTOList (List<CustomFile> savedFiles) {
-        List<FileDTO> fileDTOList = null;
+        List<FileDTO> fileDTOList = new LinkedList<>();
         for (CustomFile customFile : savedFiles) {
             fileDTOList.add(new FileDTO(
                     customFile.getName(),

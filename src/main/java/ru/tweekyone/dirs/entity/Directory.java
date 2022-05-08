@@ -16,6 +16,7 @@ import java.util.List;
 public class Directory {
 
     @Id
+    @Column(name = "directory_id")
     @SequenceGenerator(name = "directory_id_seq", sequenceName = "directory_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "directory_id_seq")
     private Long id;
