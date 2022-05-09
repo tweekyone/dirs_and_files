@@ -54,14 +54,22 @@ public class DirectoryService {
         return directoryDTO;
     }
 
-    private DirectoryDTO getDirectoryDTO(Directory savedDirectory, List<CustomFile> savedFiles) {
-        int fileCount = (int) savedFiles.stream().filter(sf -> sf.getIsFile()).count();
-        int dirCount = savedFiles.size() - fileCount;
-        long size = savedFiles.stream().map(f -> f.getSize()).reduce((x, y) -> x + y).get();
+    public List<DirectoryDTO> getAllDirectories() {
+        List<Directory> directories = directoryRepo.findAll();
+        List<DirectoryDTO> result = directories.stream()
+                .map(d -> getDirectoryDTO(d, d.getCustomFiles()))
+                .collect(Collectors.toList());
+        return result;
+    }
+
+    private DirectoryDTO getDirectoryDTO(Directory directory, List<CustomFile> files) {
+        int fileCount = (int) files.stream().filter(sf -> sf.getIsFile()).count();
+        int dirCount = files.size() - fileCount;
+        long size = files.stream().map(f -> f.getSize()).reduce((x, y) -> x + y).get();
         return new DirectoryDTO(
-                savedDirectory.getId(),
-                savedDirectory.getDateTime(),
-                savedDirectory.getPath(),
+                directory.getId(),
+                directory.getDateTime(),
+                directory.getPath(),
                 dirCount,
                 fileCount,
                 FileSizeUtil.getReadableFileSize(size));
