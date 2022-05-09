@@ -5,6 +5,37 @@
     <title>Dirs</title>
 </head>
 <body>
-
+    <h1>Директории и файлы</h1>
+    <form method="post" th:action="@{/dirs_and_files/create}">
+        <p><b>Новая директория:</b></p>
+        <input type="text" th:name="path" required="required">
+        <input type="submit" value="Добавить в список"/>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Базовая директория</th>
+                <th>Директорий</th>
+                <th>Файлов</th>
+                <th>Суммарный размер файлов</th>
+                <th>Просмотр</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dir : ${dirs}">
+                <td><span th:text="${dir.dateTime}"></span></td>
+                <td><span th:text="${dir.path}"></span></td>
+                <td><span th:text="${dir.dirCount}"></span></td>
+                <td><span th:text="${dir.fileCount}"></span></td>
+                <td><span th:text="${dir.fileSize}"></span></td>
+                <td>
+                    <form method="get" th:action="@{/get/${dir.id}}">
+                        <button type="submit" class="link-button">Файлы</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
