@@ -8,8 +8,10 @@ import ru.tweekyone.dirs.repository.CustomFileRepo;
 import ru.tweekyone.dirs.util.FileSizeUtil;
 
 import javax.transaction.Transactional;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -31,6 +33,12 @@ public class FileService {
                     customFile.getIsFile() ? FileSizeUtil.getReadableFileSize(customFile.getSize()) : "<DIR>")
             );
         }
-        return fileDTOList;
+
+        List<FileDTO> result = fileDTOList.stream()
+                                        .sorted(Comparator.comparing(FileDTO::getName, String.CASE_INSENSITIVE_ORDER))
+                                        .sorted(Comparator.comparing(FileDTO::getIsFile))
+                                        .collect(Collectors.toList());
+
+        return result;
     }
 }

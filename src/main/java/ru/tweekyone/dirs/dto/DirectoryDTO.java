@@ -12,6 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class DirectoryDTO {
 
+    private long id;
+
     private LocalDateTime dateTime;
 
     private String path;
