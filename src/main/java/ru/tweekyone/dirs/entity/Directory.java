@@ -27,6 +27,6 @@ public class Directory {
     @Column(name = "path")
     private String path;
 
-    @OneToMany(mappedBy = "directory", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "directory", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<CustomFile> customFiles;
 }

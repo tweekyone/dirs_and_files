@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,12 +30,12 @@ public class DirectoryService {
     private final CustomFileRepo customFileRepo;
 
     public DirectoryDTO createDirectory(String path) {
-        if (!Files.isDirectory(Path.of(path))) {
+        if (!Files.isDirectory(Path.of(path.trim()))) {
             throw new NoSuchDirectoryException(path);
         }
 
         DirectoryDTO directoryDTO;
-        try (Stream<Path> stream = Files.walk(Path.of(path), 1)) {
+        try (Stream<Path> stream = Files.walk(Path.of(path.trim()), 1)) {
             Directory directory = Directory.builder().dateTime(LocalDateTime.now()).path(path).build();
             List<CustomFile> files = stream
                     .map(p -> new File(p.toString()))
@@ -42,8 +43,8 @@ public class DirectoryService {
                     .map(f -> CustomFile.builder().name(f.getName()).isFile(f.isFile()).size(f.length()).directory(directory).build())
                     .collect(Collectors.toList());
 
-            Directory savedDirectory = directoryRepo.save(directory);
-            List<CustomFile> savedFiles = customFileRepo.saveAll(files);
+            Directory savedDirectory = directoryRepo.saveAndFlush(directory);
+            List<CustomFile> savedFiles = customFileRepo.saveAllAndFlush(files);
 
             directoryDTO = getDirectoryDTO(savedDirectory, savedFiles);
 
@@ -62,13 +63,18 @@ public class DirectoryService {
         return result;
     }
 
+    public DirectoryDTO getDirectoryById(Long directoryId) {
+        Directory directory = directoryRepo.getById(directoryId);
+        return getDirectoryDTO(directory, directory.getCustomFiles());
+    }
+
     private DirectoryDTO getDirectoryDTO(Directory directory, List<CustomFile> files) {
         int fileCount = (int) files.stream().filter(sf -> sf.getIsFile()).count();
         int dirCount = files.size() - fileCount;
         long size = files.stream().map(f -> f.getSize()).reduce((x, y) -> x + y).get();
         return new DirectoryDTO(
                 directory.getId(),
-                directory.getDateTime(),
+                directory.getDateTime().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")),
                 directory.getPath(),
                 dirCount,
                 fileCount,
