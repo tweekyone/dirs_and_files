@@ -16,5 +16,9 @@ public class DirectoryDTO {
 
     private String path;
 
-    private List<FileDTO> customFiles;
+    private int dirCount;
+
+    private int fileCount;
+
+    private String fileSize;
 }

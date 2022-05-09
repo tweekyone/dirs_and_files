@@ -13,5 +13,5 @@ public class FileDTO {
 
     private Boolean isFile;
 
-    private Long size;
+    private String size;
 }
