@@ -21,10 +21,7 @@ public class FileService {
 
     public List<FileDTO> getFilesList(Long id) {
         List<CustomFile> customFiles = customFileRepo.getCustomFilesByDirectory_Id(id);
-        return getFileDTOList(customFiles);
-    }
 
-    private List<FileDTO> getFileDTOList (List<CustomFile> customFiles) {
         List<FileDTO> fileDTOList = new LinkedList<>();
         for (CustomFile customFile : customFiles) {
             fileDTOList.add(new FileDTO(
@@ -34,6 +31,10 @@ public class FileService {
             );
         }
 
+        return sortFileDTOList(fileDTOList);
+    }
+
+    private List<FileDTO> sortFileDTOList (List<FileDTO> fileDTOList) {
         List<FileDTO> result = fileDTOList.stream()
                                         .sorted(Comparator.comparing(FileDTO::getName, String.CASE_INSENSITIVE_ORDER))
                                         .sorted(Comparator.comparing(FileDTO::getIsFile))

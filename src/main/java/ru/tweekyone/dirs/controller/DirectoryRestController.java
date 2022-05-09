@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/dirs_and_files")
+@RequestMapping("/rest/dirs_and_files")
 public class DirectoryRestController {
     private final DirectoryService directoryService;
     private final FileService fileService;
