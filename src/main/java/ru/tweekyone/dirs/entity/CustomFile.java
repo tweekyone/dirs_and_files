@@ -14,9 +14,13 @@ import javax.persistence.*;
 public class CustomFile {
 
     @Id
+    @Column(name = "file_id")
     @SequenceGenerator(name = "file_id_seq", sequenceName = "file_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "file_id_seq")
     private Long id;
+
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "is_file")
     private Boolean isFile;

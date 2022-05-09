@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Директории и файлы</title>
+    <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div>
+    <h1>Директории и файлы</h1>
+    <form class="mb-3" method="post" th:action="@{/dirs_and_files/create}">
+        <div>
+            <label class="form-label">Новая директория:</label>
+            <input type="text" th:name="path" required="required" class="form-control">
+            <button type="submit" class="btn btn-primary">Добавить в список</button>
+        </div>
+    </form>
+    <div>
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Базовая директория</th>
+                    <th>Директорий</th>
+                    <th>Файлов</th>
+                    <th>Суммарный размер файлов</th>
+                    <th>Просмотр</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="dir : ${dirs}">
+                    <td><span th:text="${dir.dateTime}"></span></td>
+                    <td><span th:text="${dir.path}"></span></td>
+                    <td><span th:text="${dir.dirCount}"></span></td>
+                    <td><span th:text="${dir.fileCount}"></span></td>
+                    <td><span th:text="${dir.fileSize}"></span></td>
+                    <td><form th:action="@{'/get/{directoryId}'(directoryId=${dir.id})}" th:method="get" >
+                        <button type="submit" id="submitButton">Файлы</button>
+                    </form></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
