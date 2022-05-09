@@ -1,8 +1,8 @@
 spring :
   datasource :
-    url : jdbc:postgresql://localhost:5432/dirs
-    username : postgres
-    password : postgres
+    url : jdbc:postgresql://${DATASOURCE_HOST:localhost}:5432/dirs
+    username : ${DATASOURCE_USER:postgres}
+    password : ${DATASOURCE_PASS:postgres}
   flyway:
     baselineOnMigrate: true
 
