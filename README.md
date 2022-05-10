@@ -1,4 +1,4 @@
-# Dirs and Files application
+# Dirs and Files application version 1.0
 
 ## Guidelines
 1. Clone this repository
@@ -10,7 +10,7 @@
 4. Run with console:
 ```
 $ ./gradlew build
-$ java -jar build/libs/dirs_and_files-${version} -e DATASOURCE_HOST=${datasource_host} 
+$ java -jar build/libs/dirs_and_files-${version}.jar -e DATASOURCE_HOST=${datasource_host} 
 DATASOURCE_USER=${datasource_user} DATASOURCE_PASS=${datasource_password}
 ```
 
