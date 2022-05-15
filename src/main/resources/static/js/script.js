@@ -14,7 +14,8 @@ $(document).ready(function () {
         });
     });
 
-    $('.btn-close').on('click', function () {
+    $('.btn-close').on('click', function (e) {
         $('.files-fragment').hide();
+        location.reload();
     });
 });
