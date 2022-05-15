@@ -12,3 +12,8 @@ server:
 
 driver-class-name : org.postgresql.Driver
 
+logging:
+  level:
+    org:
+      hibernate:
+              SQL: TRACE

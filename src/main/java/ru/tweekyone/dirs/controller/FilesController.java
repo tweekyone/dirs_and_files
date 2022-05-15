@@ -26,6 +26,6 @@ public class FilesController {
         DirectoryDTO directoryDTO = directoryService.getDirectoryById(directoryId);
         model.addAttribute("dir", directoryDTO);
         model.addAttribute("files", result);
-        return "files_page";
+        return "files_page :: table-fragment";
     }
 }

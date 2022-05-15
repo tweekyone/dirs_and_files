@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.tweekyone.dirs.dto.DirectoryDTO;
 import ru.tweekyone.dirs.service.DirectoryService;
 
+import java.util.List;
+
 @Controller
 @AllArgsConstructor
 @RequestMapping("/dirs_and_files")
@@ -24,8 +26,9 @@ public class DirectoryController {
 
     @PostMapping(value = "/create")
     public String createDirectory(@RequestParam String path, Model model) {
-        DirectoryDTO directoryDTO = directoryService.createDirectory(path);
-        model.addAttribute("dirs", directoryDTO);
+        directoryService.createDirectory(path);
+        List<DirectoryDTO> directories = directoryService.getRefreshedDirectoryList();
+        model.addAttribute("dirs", directories);
         return "dirs_page";
     }
 }
