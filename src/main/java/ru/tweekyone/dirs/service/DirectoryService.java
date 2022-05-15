@@ -36,7 +36,7 @@ public class DirectoryService {
 
         DirectoryDTO directoryDTO;
         try (Stream<Path> stream = Files.walk(Path.of(path.trim()), 1)) {
-            Directory directory = Directory.builder().dateTime(LocalDateTime.now()).path(path).build();
+            Directory directory = Directory.builder().dateTime(LocalDateTime.now()).path(path.trim()).build();
             List<CustomFile> files = stream
                     .map(p -> new File(p.toString()))
                     .skip(1l)
@@ -57,6 +57,16 @@ public class DirectoryService {
 
     public List<DirectoryDTO> getAllDirectories() {
         List<Directory> directories = directoryRepo.findAll();
+        List<DirectoryDTO> result = directories.stream()
+                .map(d -> getDirectoryDTO(d, d.getCustomFiles()))
+                .collect(Collectors.toList());
+        return result;
+    }
+
+    public List<DirectoryDTO> getRefreshedDirectoryList() {
+        List<Directory> directories = directoryRepo.findAll();
+        Directory lastAddedDirectory = directories.get(directories.size() - 1);
+        lastAddedDirectory.setCustomFiles(customFileRepo.getCustomFilesByDirectory_Id(lastAddedDirectory.getId()));
         List<DirectoryDTO> result = directories.stream()
                 .map(d -> getDirectoryDTO(d, d.getCustomFiles()))
                 .collect(Collectors.toList());

@@ -26,8 +26,9 @@ public class DirectoryController {
 
     @PostMapping(value = "/create")
     public String createDirectory(@RequestParam String path, Model model) {
-        DirectoryDTO directoryDTO = directoryService.createDirectory(path);
-        model.addAttribute("dirs", directoryDTO);
+        directoryService.createDirectory(path);
+        List<DirectoryDTO> directories = directoryService.getRefreshedDirectoryList();
+        model.addAttribute("dirs", directories);
         return "dirs_page";
     }
 }
