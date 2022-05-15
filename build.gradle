@@ -21,9 +21,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     compileOnly 'org.projectlombok:lombok:1.18.24'
 
-    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
-    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
-
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
