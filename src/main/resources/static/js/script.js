@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $('body').on('click', '.show-files', function () {
+    $('.show-file').on('click', function (e) {
+        e.preventDefault();
         $.ajax({
             type: 'GET',
             url: $(this).attr('path'),
@@ -13,7 +14,7 @@ $(document).ready(function () {
         });
     });
 
-    $('body').on('click', '.btn-close', function () {
+    $('.btn-close').on('click', function () {
         $('.files-fragment').hide();
     });
 });

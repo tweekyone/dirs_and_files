@@ -3,10 +3,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Файлы директории</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
 </head>
 <body th:fragment="table-fragment">
     <div class="modal files-fragment">
@@ -24,8 +20,12 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-close">Закрыть</button>
-        <a href="/dirs_and_files" class="button">Назад к списку директорий</a>
+        <button class="btn btn-close"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/script.js}"></script>
+        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
     </div>
 </body>
 </html>
