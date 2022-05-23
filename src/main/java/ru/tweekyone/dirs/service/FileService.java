@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.tweekyone.dirs.dto.FileDTO;
 import ru.tweekyone.dirs.entity.CustomFile;
 import ru.tweekyone.dirs.repository.CustomFileRepo;
+import ru.tweekyone.dirs.util.FileName;
 import ru.tweekyone.dirs.util.FileSizeUtil;
 
 import javax.transaction.Transactional;
@@ -26,6 +27,7 @@ public class FileService {
         for (CustomFile customFile : customFiles) {
             fileDTOList.add(new FileDTO(
                     customFile.getName(),
+                    new FileName(customFile.getName()),
                     customFile.getIsFile(),
                     customFile.getIsFile() ? FileSizeUtil.getReadableFileSize(customFile.getSize()) : "<DIR>")
             );
@@ -36,7 +38,7 @@ public class FileService {
 
     private List<FileDTO> sortFileDTOList (List<FileDTO> fileDTOList) {
         List<FileDTO> result = fileDTOList.stream()
-                                        .sorted(Comparator.comparing(FileDTO::getName, String.CASE_INSENSITIVE_ORDER))
+                                        .sorted(Comparator.comparing(FileDTO::getFileName))
                                         .sorted(Comparator.comparing(FileDTO::getIsFile))
                                         .collect(Collectors.toList());
 
