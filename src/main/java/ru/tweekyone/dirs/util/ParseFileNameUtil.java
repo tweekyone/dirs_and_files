@@ -12,7 +12,6 @@ public class ParseFileNameUtil {
         List<NameChunk> nameChunks = new ArrayList<>();
         String[] splited = stringFileName.toLowerCase(Locale.ROOT).split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
         for (int i = 0; i < splited.length; i++) {
-            splited[i] = splited[i].replaceAll("[^A-Za-z0-9]", "");
             if (!splited[i].isBlank() && !isNumeric(splited[i])) {
                 List<NameChunk> list = Arrays.stream(splited[i].split(""))
                         .map(s -> new NameChunk(s.charAt(0)))
