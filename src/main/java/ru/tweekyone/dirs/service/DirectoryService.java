@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -64,7 +65,9 @@ public class DirectoryService {
     }
 
     public List<DirectoryDTO> getRefreshedDirectoryList() {
-        List<Directory> directories = directoryRepo.findAll();
+        List<Directory> directories = directoryRepo.findAll().stream()
+                .sorted(Comparator.comparing(Directory::getId))
+                .collect(Collectors.toList());
         Directory lastAddedDirectory = directories.get(directories.size() - 1);
         lastAddedDirectory.setCustomFiles(customFileRepo.getCustomFilesByDirectory_Id(lastAddedDirectory.getId()));
         List<DirectoryDTO> result = directories.stream()
