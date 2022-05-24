@@ -1,12 +1,14 @@
 package ru.tweekyone.dirs.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import ru.tweekyone.dirs.util.FileName;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 public class FileDTO {
 

@@ -30,9 +30,17 @@ public class NameChunk implements Comparable<NameChunk> {
         } else if (!this.isNumeric() && !nameChunk.isNumeric()) {
             return this.character.compareTo(nameChunk.getCharacter());
         } else if (this.isNumeric() && !nameChunk.isNumeric()) {
-            return -1;
+            if(nameChunk.character == '.') {
+                return 1;
+            } else {
+                return -1;
+            }
         } else {
-            return 1;
+            if(this.character == '.') {
+                return -1;
+            } else {
+                return 1;
+            }
         }
     }
 }
