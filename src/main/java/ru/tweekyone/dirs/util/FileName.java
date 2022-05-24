@@ -3,6 +3,7 @@ package ru.tweekyone.dirs.util;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -25,6 +26,6 @@ public class FileName implements Comparable<FileName> {
             }
         }
 
-        return -1;
+        return Integer.compare(nameChunks.size(), fileName.getNameChunks().size());
     }
 }
