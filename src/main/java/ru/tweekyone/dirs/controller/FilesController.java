@@ -24,7 +24,7 @@ public class FilesController {
     public String getFiles(@PathVariable Long directoryId, Model model) {
         List<FileDTO> result = fileService.getFilesList(directoryId);
         DirectoryDTO directoryDTO = directoryService.getDirectoryById(directoryId);
-        model.addAttribute("dir", directoryDTO);
+        model.addAttribute("path", directoryDTO.getPath());
         model.addAttribute("files", result);
         return "files_page :: table-fragment";
     }
