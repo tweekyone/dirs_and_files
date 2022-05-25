@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.tweekyone.dirs.dto.DirectoryDTO;
+import org.springframework.web.servlet.view.RedirectView;
 import ru.tweekyone.dirs.service.DirectoryService;
-
-import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -25,10 +23,8 @@ public class DirectoryController {
     }
 
     @PostMapping(value = "/create")
-    public String createDirectory(@RequestParam String path, Model model) {
+    public RedirectView createDirectory(@RequestParam String path) {
         directoryService.createDirectory(path);
-        List<DirectoryDTO> directories = directoryService.getRefreshedDirectoryList();
-        model.addAttribute("dirs", directories);
-        return "dirs_page";
+        return new RedirectView("/dirs_and_files");
     }
 }

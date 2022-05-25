@@ -46,34 +46,63 @@ public class CustomFileTestData {
         customFilesTestData.add(CustomFile.builder().id(29l).name("of+strings&rlz=1C1GGRV_enRU780RU78").isFile(false).build());
 
         expectedSortedFileDTOList = new ArrayList<>();
-        expectedSortedFileDTOList.add(FileDTO.builder().name(".starts with dot").fileName(new FileName(".starts with dot")).isFile(false).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU75RU778").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU75RU778")).isFile(false).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU78").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU78")).isFile(false).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("~$starts with symbols").fileName(new FileName("~$starts with symbols")).isFile(false).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("~$текст на русском").fileName(new FileName("~$текст на русском")).isFile(false).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("текст на русском").fileName(new FileName("текст на русском")).isFile(false).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name(".DS_Store").fileName(new FileName(".DS_Store")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name(".starts with dot").fileName(new FileName(".starts with dot")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name(".начинается с точки").fileName(new FileName(".начинается с точки")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("1_gxXLMIuJDHCH7fwIgEP1cg.png").fileName(new FileName("1_gxXLMIuJDHCH7fwIgEP1cg.png")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name(";not dot").fileName(new FileName(";not dot")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU75RU778").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU75RU778")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU750RU778").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU750RU778")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU750RU780").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU750RU780")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU78").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU78")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU78a").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU78a")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU779").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU779")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU780").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU780")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU780q").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU780q")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU781").fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU781")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("only letters text").fileName(new FileName("only letters text")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("search?q=list").fileName(new FileName("search?q=list")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("text 564 without46 speci654al symbols").fileName(new FileName("text 564 without46 speci654al symbols")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("~$dтекст на русском").fileName(new FileName("~$dтекст на русском")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("~$starts with symbols").fileName(new FileName("~$starts with symbols")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("~$екст на русском").fileName(new FileName("~$екст на русском")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("~$текст на русском").fileName(new FileName("~$текст на русском")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("екст на русском").fileName(new FileName("екст на русском")).isFile(true).build());
-        expectedSortedFileDTOList.add(FileDTO.builder().name("текст на русском").fileName(new FileName("текст на русском")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name(".starts with dot")
+                .fileName(new FileName(".starts with dot")).isFile(false).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU75RU778")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU75RU778")).isFile(false).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU78")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU78")).isFile(false).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("~$starts with symbols")
+                .fileName(new FileName("~$starts with symbols")).isFile(false).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("~$текст на русском")
+                .fileName(new FileName("~$текст на русском")).isFile(false).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("текст на русском")
+                .fileName(new FileName("текст на русском")).isFile(false).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name(".DS_Store")
+                .fileName(new FileName(".DS_Store")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name(".starts with dot")
+                .fileName(new FileName(".starts with dot")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name(".начинается с точки")
+                .fileName(new FileName(".начинается с точки")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("1_gxXLMIuJDHCH7fwIgEP1cg.png")
+                .fileName(new FileName("1_gxXLMIuJDHCH7fwIgEP1cg.png")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name(";not dot")
+                .fileName(new FileName(";not dot")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU75RU778")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU75RU778")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU750RU778")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU750RU778")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU750RU780")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU750RU780")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU78")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU78")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU78a")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU78a")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU779")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU779")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU780")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU780")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU780q")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU780q")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("of+strings&rlz=1C1GGRV_enRU780RU781")
+                .fileName(new FileName("of+strings&rlz=1C1GGRV_enRU780RU781")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("only letters text")
+                .fileName(new FileName("only letters text")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("search?q=list")
+                .fileName(new FileName("search?q=list")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("text 564 without46 speci654al symbols")
+                .fileName(new FileName("text 564 without46 speci654al symbols")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("~$dтекст на русском")
+                .fileName(new FileName("~$dтекст на русском")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("~$starts with symbols")
+                .fileName(new FileName("~$starts with symbols")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("~$екст на русском")
+                .fileName(new FileName("~$екст на русском")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("~$текст на русском")
+                .fileName(new FileName("~$текст на русском")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("екст на русском")
+                .fileName(new FileName("екст на русском")).isFile(true).build());
+        expectedSortedFileDTOList.add(FileDTO.builder().name("текст на русском")
+                .fileName(new FileName("текст на русском")).isFile(true).build());
     }
 }
