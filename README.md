@@ -1,4 +1,4 @@
-# Dirs and Files application version 1.1
+# Dirs and Files application version 1.2
 
 ## Guidelines
 1. Clone this repository
